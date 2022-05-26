@@ -1,0 +1,11 @@
+python-dotenv==0.19.2
+twilio==7.3.2
+datetime
+time
+schedule
+os
+dotenv
+RPi.GPIO 
+requests
+
+
