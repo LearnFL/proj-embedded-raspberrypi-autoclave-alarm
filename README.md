@@ -11,4 +11,6 @@ connection_check.py checks whether the system has internet connection.
 
 I used raspberry pi 4 which autostarts code when it is plugged in.
 
+Feel free to use and change the code but keep authorship attributes please.
+
 ![560A3C71-73EE-4EDF-917E-D10F73D2DBBE](https://user-images.githubusercontent.com/86169204/181386531-37d6fc93-5f81-4d67-a373-1ccb4cf7a965.JPEG)
