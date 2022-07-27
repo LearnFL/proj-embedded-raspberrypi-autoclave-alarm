@@ -12,7 +12,7 @@ GPIO.setup(led_pin, GPIO.OUT, initial=0)
 def check_internet():
     timeout = 10
     try:
-        requests.head('https://www.google.com', timeout=timeout)
+        requests.head('SOME WEB SITE', timeout=timeout)
         #print('Connected to internet')
         
     except:
@@ -36,6 +36,7 @@ try:
         schedule.run_pending()
         
         check_internet()
+        sleep(30)
             
 except KeyboardInterrupt:
     print('Clean up')
