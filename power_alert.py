@@ -16,13 +16,9 @@ class PhoneBook():
     def __init__(self):
         self.name_list = []
         self.phones = {
-            'Dennis': '+12166739812',
-            #'Tom': '+14403449475',
-            #'Joe': '+14404943841',
-            #'Fred': '+12162721009',
-            'James': '+14406690701',
-            'Sarah': '+14404173812'
-            #'Matt': '+14404138200'
+            'NAME_1': '+1xxxxxxxxxx',   # Enter a name and a phone numeber 
+            'NAME_2': '+1xxxxxxxxxx',   # Enter a name and a phone numeber 
+            'NAME_3': '+1xxxxxxxxxx'    # Enter a name and a phone numeber 
         }
 
     def get_numbers(self):
@@ -37,8 +33,9 @@ class PhoneBook():
         return f"Object: {self.__class__.__name__!r}, SMS list: {self.phones!r}"
 
 
-phonebook=PhoneBook()
+phonebook = PhoneBook()
 
+# LED serves as an indicator that the system is connected to internet
 def flash(n):
     for i in range (n):
         GPIO.output(led_pin, 1)
@@ -57,15 +54,17 @@ def alert(message):
                
     except:
         pass
+        # Restarts the code 
         os.system('python /home/pi/Documents/Code/ac_alert.py')
     
 def send_power_alert():
     try:
         alert("POWER OUTAGE ALERT")
-        sleep(60*10)
+        sleep(60*10) # to limit number of alerts
     except:
         flash(3)
         pass
+        # restart code
         os.system('python /home/pi/Documents/Code/ac_alert.py')
         
     
