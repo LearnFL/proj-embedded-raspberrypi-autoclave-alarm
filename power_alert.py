@@ -1,3 +1,6 @@
+'''THIS SOFTWARE WAS BUILT BY DENNIS ROTNOV
+Feel free to reuse it and change it, but keep authorship attribution please'''
+
 from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
 import os
