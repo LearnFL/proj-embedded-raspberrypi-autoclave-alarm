@@ -1,3 +1,6 @@
+'''THIS SOFTWARE WAS BUILT BY DENNIS ROTNOV
+Feel free to reuse it and change it, but keep authorship attribution please'''
+
 from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
 import os
@@ -17,13 +20,8 @@ class PhoneBook():
     def __init__(self):
         self.name_list = []
         self.phones = {
-            'Dennis': '+12166739812',
-            #'Tom': '+14403449475',
-            #'Joe': '+14404943841',
-            #'Fred': '+12162721009',
-            'James': '+14406690701',
-            'Sarah': '+14404173812'
-            #'Matt': '+14404138200'
+            'NAME_1': '+1xxxxxxxxxx',
+            'NAME_2': '+1xxxxxxxxxx',
         }
 
     def get_numbers(self):
@@ -43,7 +41,8 @@ class TimeCheck:
         self.end_hour = None
         self.now = None
         self.today = None
-        
+    
+    # Function to set time of the day limitations for alerts
     def check_hours(self, start, end):
         condition = False
         
@@ -65,7 +64,7 @@ class TimeCheck:
             
         return condition
     
-    
+    # Function to set day of the week limitations for alerts
     def check_days(self):
         
         condition = False
@@ -84,7 +83,7 @@ class TimeCheck:
 
     
 condition = TimeCheck()
-phonebook=PhoneBook()
+phonebook = PhoneBook()
 
 def flash(n):
     for i in range (n):
@@ -133,18 +132,19 @@ try:
         
         schedule.run_pending()
         
+        # System activates when alarm pin goes low
         if GPIO.input(ac_alarm_pin) == False:
             if condition.check_hours(start=6, end=21) == True and condition.check_days() == True:
-                sleep(1.5)
-                if GPIO.input(ac_alarm_pin) == False:
+                sleep(1.5)  # To limit false alarms
+                if GPIO.input(ac_alarm_pin) == False: # To limit false alarms
                     send_ac_alert() 
                 
-            if condition.check_hours(start=8, end=21) == True and condition.check_days() == False:
+            elif condition.check_hours(start=8, end=21) == True and condition.check_days() == False:
                 sleep(1.5)
                 if GPIO.input(ac_alarm_pin) == False:
                     send_ac_alert() 
             
-            while GPIO.input(ac_alarm_pin) == False:
+            while GPIO.input(ac_alarm_pin) == False: # System will sleep for a slong as the alarm is on, so the user does not get multiple messages
                 sleep(0.01)
                
 except KeyboardInterrupt:
