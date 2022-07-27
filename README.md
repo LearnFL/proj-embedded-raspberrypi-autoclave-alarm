@@ -7,7 +7,7 @@ will not be getting a new message every 10 minutes.
 power_alert.py sends a text message when the power goes out, for this reason the development board must be on UPS.
 There is no time or day of the week limitation for this alarm.
 
-connection_check.py checks whether the system has internet connection.
+connection_check.py checks whether the system has internet connection. I bet there should be a better way of doing it.
 
 I used raspberry pi 4 which autostarts code when it is plugged in.
 
