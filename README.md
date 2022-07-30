@@ -1,4 +1,4 @@
-# This software sends text messages via TWILIO accoubt when analog equipment triggers an alarm.
+# This software sends text messages via TWILIO account when analog equipment triggers an alarm.
 
 ## Overview 
 I used raspberry pi 4 which autostarts code when it is plugged in.
