@@ -129,10 +129,8 @@ GPIO.setup(led_pin, GPIO.OUT, initial=0)
 
 schedule.every(5).seconds.do(flash, 1)
 
-#pi = pigpio.pi()
 
 try:
-    #pi.set_glitch_filter(ac_alarm_pin, 1000)
     
     while True:
         
