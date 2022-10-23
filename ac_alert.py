@@ -61,6 +61,10 @@ class TimeCheck:
             
         else:
             condition = False
+        
+        self.now = None
+        self.end_hour= None
+        self.start_hour = None
             
         return condition
     
@@ -78,6 +82,8 @@ class TimeCheck:
             
         else:
             condition = False
+            
+        self.today = None
         
         return condition
 
