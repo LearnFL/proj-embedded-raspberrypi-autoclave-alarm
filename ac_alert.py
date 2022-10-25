@@ -63,9 +63,6 @@ class TimeCheck:
             condition = False
         
         self.now = None
-        self.end_hour= None
-        self.start_hour = None
-            
         return condition
     
     # Function to set day of the week limitations for alerts
@@ -84,9 +81,7 @@ class TimeCheck:
             condition = False
             
         self.today = None
-        
         return condition
-
     
 condition = TimeCheck()
 phonebook = PhoneBook()
