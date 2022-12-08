@@ -46,15 +46,10 @@ class TimeCheck:
     def check_hours(self, start, end):
         condition = False
         
-        if self.start_hour is None:
-            self.start_hour = start
-            
-        if self.end_hour is None:
-            self.end_hour = end
-                
         if self.now is None:
-            
             self.now = datetime.now().time()
+            self.end_hour = end
+            self.start_hour = start
             
         if (self.now.hour >= self.start_hour) and (self.now.hour <= self.end_hour):
             condition = True
@@ -67,16 +62,13 @@ class TimeCheck:
     
     # Function to set day of the week limitations for alerts
     def check_days(self):
-        
         condition = False
         
         if self.today is None:
-            
             self.today = datetime.now()
             
         if self.today.weekday() in range(0,6):
             condition = True
-            
         else:
             condition = False
             
