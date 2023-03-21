@@ -41,15 +41,14 @@ class TimeCheck:
         self.end_hour = None
         self.now = None
         self.today = None
-    
-    # Function to set time of the day limitations for alerts
+        
     def check_hours(self, start, end):
         condition = False
-        
+           
         if self.now is None:
-            self.now = datetime.now().time()
-            self.end_hour = end
             self.start_hour = start
+            self.end_hour = end
+            self.now = datetime.now().time()
             
         if (self.now.hour >= self.start_hour) and (self.now.hour <= self.end_hour):
             condition = True
@@ -57,26 +56,29 @@ class TimeCheck:
         else:
             condition = False
         
-        self.now = None
+        self.now = None #new
         return condition
     
-    # Function to set day of the week limitations for alerts
+    
     def check_days(self):
+        
         condition = False
         
         if self.today is None:
             self.today = datetime.now()
             
-        if self.today.weekday() in range(0,6):
-            condition = True
-        else:
-            condition = False
-            
-        self.today = None
+            if self.today.weekday() in range(0,6):
+                condition = True
+                
+            else:
+                condition = False
+        
+        self.today = None #new
         return condition
+
     
 condition = TimeCheck()
-phonebook = PhoneBook()
+phonebook=PhoneBook()
 
 def flash(n):
     for i in range (n):
@@ -116,26 +118,25 @@ GPIO.setup(led_pin, GPIO.OUT, initial=0)
 
 schedule.every(5).seconds.do(flash, 1)
 
+#pi = pigpio.pi()
 
-try:
-    
+try:  
     while True:
-        
+        #condition = TimeCheck()
         schedule.run_pending()
         
-        # System activates when alarm pin goes low
         if GPIO.input(ac_alarm_pin) == False:
-            if condition.check_hours(start=6, end=21) == True and condition.check_days() == True:
-                sleep(1.5)  # To limit false alarms
-                if GPIO.input(ac_alarm_pin) == False: # To limit false alarms
+            if condition.check_hours(start=6, end=20) == True and condition.check_days() == True:
+                sleep(1.5)
+                if GPIO.input(ac_alarm_pin) == False:
                     send_ac_alert() 
                 
-            elif condition.check_hours(start=8, end=21) == True and condition.check_days() == False:
+            if condition.check_hours(start=8, end=20) == True and condition.check_days() == False:
                 sleep(1.5)
                 if GPIO.input(ac_alarm_pin) == False:
                     send_ac_alert() 
             
-            while GPIO.input(ac_alarm_pin) == False: # System will sleep for a slong as the alarm is on, so the user does not get multiple messages
+            while GPIO.input(ac_alarm_pin) == False:
                 sleep(0.01)
                
 except KeyboardInterrupt:
@@ -146,4 +147,5 @@ finally:
     print('Clean up')
     GPIO.cleanup()
             
+             
         
