@@ -13,11 +13,11 @@ def check_internet():
     timeout = 10
     try:
         requests.head('SOME WEB SITE', timeout=timeout)
-        #print('Connected to internet')
         
     except:
-        #print('No internet connection')
-        flash(3)
+       for i in range(36):
+            flash(3)
+            sleep(5)
         pass
         os.system('python /home/pi/Documents/Code/ac_alert.py')
 
@@ -29,15 +29,12 @@ def flash(n):
         sleep(0.2)
 
 schedule.every(5).seconds.do(flash, 1)
+schedule.every(180).seconds.do(check_internet)
 
 try:
     while True:
-        
         schedule.run_pending()
-        
-        check_internet()
-        sleep(30)
-            
+             
 except KeyboardInterrupt:
     print('Clean up')
     GPIO.cleanup()
